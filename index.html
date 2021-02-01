@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<link rel="stylesheet" href="/style.css">
+	<meta charset="UTF-8">
+	<title>TicTacToe by DasBobbit</title>
+</head>
+
+<body>
+	<div id="container">
+		<div id="board-container">
+
+		</div>
+		<div id="game-container">
+			<div id="player1" class="player-container">
+				<span class="player-symbol" id="player1-symbol">X</span>
+				<a class="player-name" id="player1-name"></a>
+			</div>
+			<div id="score-container">
+				<a class="player-score" id="player1-score">2</a>
+				<span class="player-score"></span>
+				<a class="player-score" id="player2-score">0</a>
+			</div>
+			<div id="player2" class="player-container">
+				<span class="player-symbol" id="player1-symbol">O</span>
+				<a class="player-name" id="player2-name"></a>
+			</div>
+		</div>
+		<div id="game-dialogue">
+			<span id="dialogue-text"> This is the gialogue text</span>
+		</div>
+	</div>
+
+
+
+	<div id="newGameModal" class="modal">
+		<div class="modal-header">
+			<h2 id="header">Tic-Tac-Toe</h2>
+			<!-- <span class="close">&times;</span> -->
+		</div>
+		<div class="modal-body">
+
+
+			<div class="body-containers" id="choose-opponent">
+				<p id="you">You</p>
+				<p id="vs">vs</p>
+				<div id="opponent-choice">
+					<div class="opponent-choice-inner">
+						<label class="just-direction" for="player-opponent">Player</label>
+						<input class="just-direction" type="radio" name="radiobutton" id="player-opponent">
+					</div>
+					<div class="opponent-choice-inner">
+						<label class="just-direction" for="ai-opponent">AI</label>
+						<input class="just-direction" type="radio" name="radiobutton" id="ai-opponent">
+					</div>
+				</div>
+			</div>
+			<div class="body-containers" id="first-to">
+				<p id="first-to-text">First to: </p>
+				<input id="first-to-number" type="number" min=1 max=7 value=3>
+			</div>
+			<div>
+				<button id="submit-entry">Let's Play!</button>
+				<p id="incomplete-entry"></p>
+			</div>
+		</div>
+	</div>
+
+	<script src="/script.js"></script>
+</body>
+
+</html>

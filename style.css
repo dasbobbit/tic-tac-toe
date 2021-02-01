@@ -1,0 +1,146 @@
+html {
+    width: 100%;
+}
+body {
+    font-family:sans-serif;
+    letter-spacing: -2px;
+    background-image: url(images/squared_metal.png);
+}
+#container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    min-width: 360px;
+    width: 65vw;
+    max-width: 500px;
+    /* max-height: 500px; */
+}
+#board-container {
+    /* flex-grow: 2; */
+    display: grid;
+    width: 65vw;
+    height: 65vw;
+    /* margin: 0 auto 15px auto; */
+    min-width: 360px;
+    min-height: 360px;
+    max-width: 500px;
+    max-height: 500px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+}
+.block {
+    text-align: center;
+    /* font-size: 15vmin; */
+    display: inline-block;
+    /* background-color: aqua; */
+    border: 5px solid black;
+}
+.span {
+    font-size: 90px;
+    /* text-align: center; */
+    /* vertical-align: middle; */
+}
+
+#game-container {
+    margin: 20px 0;
+    /* flex-grow: 2; */
+    display: flex;
+    justify-content: space-between;
+}
+.player-container {
+    font-size: 30px;
+    align-items: center;
+    /* margin-top: 200px; */
+    display: flex;
+    flex-direction: column;
+}
+#score-container {
+    display: flex;
+    justify-content: space-between;
+    margin: auto 10px; 
+    font-size: 40px;
+}
+.player-score {
+    margin: auto 10px;
+}
+#game-dialogue {
+    margin: 0 auto;
+}
+#dialogue-text {
+    /* margin: 0 auto; */
+    font-size: 40px;
+}
+
+/* modals */
+.modal {
+    color: #ffbb00;
+    font-size: 30px;
+    /* display: none;  */
+    /* position: fixed; */
+    z-index: 1;
+    margin: -500px auto;
+    width: 350px;
+    /* left: 0%; */
+    /* right: 50%; */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    box-shadow: 5px 5px 5px  rgba(0, 0, 0, 0.678);
+    border-radius: 10px;
+    /* -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.5s;
+    animation-name: animatetop;
+    animation-duration: 0.5s; */
+}
+.modal-header {
+    text-align: center;
+}
+.modal-body {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+.body-containers {
+    display: flex;
+}
+.body-containers p {
+    margin: 20px 0;
+}
+#choose-opponent {
+    display: flex;
+    justify-content: space-around;
+}
+#opponent-choice {
+    display: flex;
+    flex-direction: column;
+}
+#opponent-choice-inner {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.just-direction {
+    justify-content: flex-end;
+}
+
+#first-to {
+    justify-content: space-evenly;
+    margin: 0 80px;
+}
+#first-to-number {
+    font-size: 30px;
+    width: 35px;
+    height: 30px;
+    margin: auto 0;
+}
+/* input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance:inherit;
+} */
+button {
+    font-size: 100%;
+    font-weight: 800;
+    border: 0;
+    padding: 8px;
+    background-color: #ffbb00;
+    border-radius: 5px;
+    cursor: pointer;
+}
