@@ -1,7 +1,7 @@
-const boardContainer = document.getElementById('board-container');
 
 // Create grid
 const gameBoard = (() => {
+    const boardContainer = document.getElementById('board-container');
 
     const setBoard = () => {
         const DIM = 3;
@@ -18,7 +18,7 @@ const gameBoard = (() => {
 
     const updateBoard = (id, playerSymbol) => {
         let blockToUpdate = document.getElementById(`${id}`);
-        console.log(blockToUpdate.firstChild);
+        // console.log(blockToUpdate.firstChild);
         blockToUpdate.firstChild.textContent = playerSymbol;
     };
 
@@ -28,6 +28,7 @@ const gameBoard = (() => {
             block.firstChild.textContent = "";
         });
         console.log(blocksToReset);
+
     }
     setBoard();
 
@@ -44,7 +45,7 @@ const players = (() => {
         const isTurn = playerSymbol === "X" ? true : false;
         const playerScore = 0;
         const startGame = isTurn;
-        return { name, playerSymbol, startGame, isTurn, playerScore};
+        return { name, playerSymbol, startGame, isTurn, playerScore };
     }
     return {
         player
@@ -54,12 +55,12 @@ const players = (() => {
 const gameController = (() => {
     let gameArray = new Array(9).fill("");
     let player1 = players.player("Player 1", "X");
-    let player2 = players.player("Player 2", "O");
     let totalMoves = 0;
-    let firstToGames = 5;
+    let firstToGames;
 
-    // console.log(player1);
-    // console.log(player2);
+    const myModal = document.querySelector('#myModal');
+    const container = document.querySelector('#container');
+    container.classList.add('.freeze');
 
     const player1Name = document.querySelector('#player1-name');
     const player2Name = document.querySelector('#player2-name');
@@ -69,12 +70,43 @@ const gameController = (() => {
     const player2Symbol = document.querySelector('#player2-symbol');
     const dialogTxt = document.querySelector('#dialogue-text');
 
-    player1Name.textContent = `${player1.name}`;
-    player2Name.textContent = `${player2.name}`;
-    player1Score.textContent = `${player1.playerScore}`;
-    player2Score.textContent = `${player2.playerScore}`;
+    const playerSelect = document.querySelector('#player-opponent');
+    const aiSelect = document.querySelector('#ai-opponent');
+    incompleteEntry = document.querySelector('#incomplete-entry');
+    // console.log(firstToGames);
+    
+    const newGame = () => {
+        myModal.style.display = "block";
+        gameArray = new Array(9).fill("");
+        totalMoves = 0;
+        firstToGames = 0;
+        player1.playerScore = 0;
+        player2.playerScore = 0;
+        gameBoard.resetBoard;
+    };
+    newGame();
 
+    const submitEntry = (e) => {
 
+        firstToGamesInput = document.querySelector('#first-to-number');
+        firstToGames = firstToGamesInput.value;
+        if (aiSelect.checked === false && playerSelect.checked === false) {
+            incompleteEntry.textContent = "Choose an opponent";
+        } else if (firstToGames < 1) {
+            incompleteEntry.textContent = "Play at least one game!";
+        } else {
+            player2 = playerSelect.checked === true ? players.player("Player 2", "O") : players.player("AI", "O");
+            player1Name.textContent = `${player1.name}`;
+            player2Name.textContent = `${player2.name}`;
+            player1Score.textContent = `${player1.playerScore}`;
+            player2Score.textContent = `${player2.playerScore}`;
+            player1Symbol.textContent = `${player1.playerSymbol}`;
+            player2Symbol.textContent = `${player2.playerSymbol}`;
+            incompleteEntry.textContent = "";
+            myModal.style.display = "none";
+            dialogTxt.textContent = "";
+        }
+    }
 
     const playerSwitch = () => {
         player1.isTurn = player1.isTurn === true ? false : true;
@@ -83,15 +115,17 @@ const gameController = (() => {
     console.log(totalMoves);
 
     const playerMove = (e) => {
-
-        let player = player1.isTurn === true ? player1 : player2;
-        // console.log(e);
-        if (gameArray[e.target.id] == "") {
-            gameArray[e.target.id] = player.playerSymbol;
-            gameBoard.updateBoard(e.target.id, player.playerSymbol);
-            playerSwitch();
-
-            checkWinner(player);
+        console.log(myModal.style.display);
+        if (myModal.style.display == 'none') {
+            let player = player1.isTurn === true ? player1 : player2;
+            // console.log(e);
+            if (gameArray[e.target.id] == "") {
+                gameArray[e.target.id] = player.playerSymbol;
+                gameBoard.updateBoard(e.target.id, player.playerSymbol);
+                playerSwitch();
+    
+                checkWinner(player);
+            }
         }
     };
 
@@ -113,7 +147,7 @@ const gameController = (() => {
                 resetRound();
                 console.log(player1);
                 console.log(player2);
-            } 
+            }
 
         });
         if (totalMoves === 9) {
@@ -131,31 +165,39 @@ const gameController = (() => {
         // Update playerScores
         player1Score.textContent = `${player1.playerScore}`;
         player2Score.textContent = `${player2.playerScore}`;
-        
+
         // Check if games to win is reached
-        if (player1.playerScore === 5 || player2.playerScore === 5) {
-            if (player1.playerScore === 5) {
+        if (player1.playerScore == firstToGames || player2.playerScore == firstToGames) {
+            if (player1.playerScore == firstToGames) {
                 dialogTxt.textContent = `${player1.name} wins the game!`;
             } else {
                 dialogTxt.textContent = `${player2.name} wins the game!`;
             }
-            
+            newGame();
         }
-
         gameArray = new Array(9).fill("");
-        gameBoard.resetBoard();
         totalMoves = 0;
+        gameBoard.resetBoard();
+        
         return gameArray;
     }
 
     let blockClick = document.querySelectorAll('.block');
     blockClick.forEach(element => element.addEventListener('click', playerMove));
 
+    // const wClick = window.addEventListener('click', (e) => {
+    //     console.log(e);
+    // });
+
+    const submit = document.querySelector('#submit-entry')
+    submit.addEventListener('click', submitEntry);
+
 
     return {
         blockClick,
         checkWinner,
-        playerMove
+        playerMove,
+        newGame
     }
 
 })();
