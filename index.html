@@ -9,8 +9,8 @@
 
 <body>
 	<div id="container">
+		<h1 id="title">Tic-Tac-Toe</h1>
 		<div id="board-container">
-
 		</div>
 		<div id="game-container">
 			<div id="player1" class="player-container">
@@ -43,17 +43,14 @@
 			<div class="modal-body">
 
 				<div class="body-containers" id="choose-opponent">
-					<p id="you">You</p>
+					<div class="player-input-container">
+						<label class="just-direction" for="player1-input">Player 1</label>
+						<input class="just-direction" type="text" id="player1-input">
+					</div>
 					<p id="vs">vs</p>
-					<div id="opponent-choice">
-						<div class="opponent-choice-inner">
-							<label class="just-direction" for="player-opponent">Player</label>
-							<input class="just-direction" type="radio" name="radiobutton" id="player-opponent">
-						</div>
-						<div class="opponent-choice-inner">
-							<label class="just-direction" for="ai-opponent">AI</label>
-							<input class="just-direction" type="radio" name="radiobutton" id="ai-opponent">
-						</div>
+					<div id="player-input-container">
+							<label class="just-direction" for="player2-input">Player 2</label>
+							<input class="just-direction" type="text" id="player2-input">
 					</div>
 				</div>
 				<div class="body-containers" id="first-to">

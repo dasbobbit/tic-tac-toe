@@ -2,6 +2,7 @@ html {
     width: 100%;
 }
 body {
+    color: rgb(92, 91, 86);
     font-family:sans-serif;
     letter-spacing: -2px;
     background-image: url(images/squared_metal.png);
@@ -121,40 +122,58 @@ body {
 .body-containers p {
     margin: 20px 0;
 }
-#choose-opponent {
-    display: flex;
-    justify-content: space-around;
-}
-#opponent-choice {
-    display: flex;
-    flex-direction: column;
-}
-#opponent-choice-inner {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-}
-.just-direction {
-    justify-content: flex-end;
-}
 
 #first-to {
     justify-content: space-evenly;
     margin: 0 80px;
 }
 #first-to-number {
-    font-size: 30px;
-    width: 35px;
+    font-size: 26px;
+    width: 40px;
     height: 30px;
-    margin: auto 0;
+    margin: 20px 0;
+    background-color: rgb(92, 91, 86);
+    color: rgb(201, 197, 175);
+    border: 2px solid rgb(92, 91, 86);
+    border-radius: 5px;
 }
 
-button {
+.just-direction {
+    width: 140px;
+}
+
+#submit-entry {
     font-size: 100%;
     font-weight: 800;
     border: 0;
     padding: 8px;
-    background-color: #ffbb00;
+    background-color: rgb(201, 197, 175);
+    color: rgb(92, 91, 86);
     border-radius: 5px;
+    box-shadow: 1px 1px 5px  rgba(0, 0, 0, 0.678) ;
     cursor: pointer;
+}
+#player1-input {
+    margin-top: 12px;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgb(92, 91, 86);
+    color: rgb(201, 197, 175);
+    border: 2px solid rgb(92, 91, 86);
+    border-radius: 5px;
+}
+#player2-input {
+    margin-top: 12px;
+    height: 30px;
+    font-size: 20px;
+    background-color: rgb(92, 91, 86);
+    color: rgb(201, 197, 175);
+    border: 2px solid rgb(92, 91, 86);
+    border-radius: 5px;
+}
+#title {
+    text-align: center;
+    margin: 5px 0;
+    color: rgb(92, 91, 86);
+    font-size: 60px;
 }

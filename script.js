@@ -1,4 +1,3 @@
-
 // Create grid
 const gameBoard = (() => {
     const boardContainer = document.getElementById('board-container');
@@ -54,21 +53,23 @@ const players = (() => {
 
 const gameController = (() => {
     let gameArray = new Array(9).fill("");
-    let player1 = players.player("Player 1", "X");
     let totalMoves = 0;
     let firstToGames;
+    let player1, player2;
 
     const myModal = document.querySelector('#myModal');
     const container = document.querySelector('#container');
     container.classList.add('.freeze');
 
-    const player1Name = document.querySelector('#player1-name');
-    const player2Name = document.querySelector('#player2-name');
+    const player1input = document.querySelector('#player1-input');
+    const player2input = document.querySelector('#player2-input');
     const player1Score = document.querySelector('#player1-score');
     const player2Score = document.querySelector('#player2-score');
     const player1Symbol = document.querySelector('#player1-symbol');
     const player2Symbol = document.querySelector('#player2-symbol');
     const dialogTxt = document.querySelector('#dialogue-text');
+    const player1Name = document.querySelector('#player1-name');
+    const player2Name = document.querySelector('#player2-name');
 
     const playerSelect = document.querySelector('#player-opponent');
     const aiSelect = document.querySelector('#ai-opponent');
@@ -80,22 +81,24 @@ const gameController = (() => {
         gameArray = new Array(9).fill("");
         totalMoves = 0;
         firstToGames = 0;
-        player1.playerScore = 0;
-        player2.playerScore = 0;
+        // player1.playerScore = 0;
+        // player2.playerScore = 0;
         gameBoard.resetBoard;
     };
     newGame();
 
     const submitEntry = (e) => {
-
+        console.log(e);
+        console.log(player2input.value);
         firstToGamesInput = document.querySelector('#first-to-number');
         firstToGames = firstToGamesInput.value;
-        if (aiSelect.checked === false && playerSelect.checked === false) {
-            incompleteEntry.textContent = "Choose an opponent";
+        if (player1input.value == "" || player2input.value == "") {
+            incompleteEntry.textContent = "Fill the names in";
         } else if (firstToGames < 1) {
             incompleteEntry.textContent = "Play at least one game!";
         } else {
-            player2 = playerSelect.checked === true ? players.player("Player 2", "O") : players.player("AI", "O");
+            player1 = players.player(`${player1input.value}`, "X");
+            player2 = players.player(`${player2input.value}`, "O");
             player1Name.textContent = `${player1.name}`;
             player2Name.textContent = `${player2.name}`;
             player1Score.textContent = `${player1.playerScore}`;
@@ -105,6 +108,8 @@ const gameController = (() => {
             incompleteEntry.textContent = "";
             myModal.style.display = "none";
             dialogTxt.textContent = "";
+            console.log(player1);
+            console.log(player2);
         }
     }
 
@@ -115,10 +120,11 @@ const gameController = (() => {
     console.log(totalMoves);
 
     const playerMove = (e) => {
-        console.log(myModal.style.display);
+        console.log(player1);
+        console.log(player2);
         if (myModal.style.display == 'none') {
             let player = player1.isTurn === true ? player1 : player2;
-            // console.log(e);
+            console.log(e);
             if (gameArray[e.target.id] == "") {
                 gameArray[e.target.id] = player.playerSymbol;
                 gameBoard.updateBoard(e.target.id, player.playerSymbol);
@@ -185,13 +191,8 @@ const gameController = (() => {
     let blockClick = document.querySelectorAll('.block');
     blockClick.forEach(element => element.addEventListener('click', playerMove));
 
-    // const wClick = window.addEventListener('click', (e) => {
-    //     console.log(e);
-    // });
-
     const submit = document.querySelector('#submit-entry')
     submit.addEventListener('click', submitEntry);
-
 
     return {
         blockClick,
