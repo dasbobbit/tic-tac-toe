@@ -17,7 +17,6 @@ const gameBoard = (() => {
 
     const updateBoard = (id, playerSymbol) => {
         let blockToUpdate = document.getElementById(`${id}`);
-        // console.log(blockToUpdate.firstChild);
         blockToUpdate.firstChild.textContent = playerSymbol;
     };
 
@@ -26,8 +25,6 @@ const gameBoard = (() => {
         blocksToReset.forEach((block) => {
             block.firstChild.textContent = "";
         });
-        console.log(blocksToReset);
-
     }
     setBoard();
 
@@ -74,7 +71,6 @@ const gameController = (() => {
     const playerSelect = document.querySelector('#player-opponent');
     const aiSelect = document.querySelector('#ai-opponent');
     incompleteEntry = document.querySelector('#incomplete-entry');
-    // console.log(firstToGames);
     
     const newGame = () => {
         myModal.style.display = "block";
@@ -88,8 +84,6 @@ const gameController = (() => {
     newGame();
 
     const submitEntry = (e) => {
-        console.log(e);
-        console.log(player2input.value);
         firstToGamesInput = document.querySelector('#first-to-number');
         firstToGames = firstToGamesInput.value;
         if (player1input.value == "" || player2input.value == "") {
@@ -108,8 +102,6 @@ const gameController = (() => {
             incompleteEntry.textContent = "";
             myModal.style.display = "none";
             dialogTxt.textContent = "";
-            console.log(player1);
-            console.log(player2);
         }
     }
 
@@ -117,14 +109,10 @@ const gameController = (() => {
         player1.isTurn = player1.isTurn === true ? false : true;
         player2.isTurn = player1.isTurn === true ? false : true;
     }
-    console.log(totalMoves);
 
     const playerMove = (e) => {
-        console.log(player1);
-        console.log(player2);
         if (myModal.style.display == 'none') {
             let player = player1.isTurn === true ? player1 : player2;
-            console.log(e);
             if (gameArray[e.target.id] == "") {
                 gameArray[e.target.id] = player.playerSymbol;
                 gameBoard.updateBoard(e.target.id, player.playerSymbol);
@@ -151,8 +139,6 @@ const gameController = (() => {
                 dialogTxt.textContent = `${player.name} wins the round!`;
                 player.name === player1.name ? player1.playerScore++ : player2.playerScore++;
                 resetRound();
-                console.log(player1);
-                console.log(player2);
             }
 
         });
